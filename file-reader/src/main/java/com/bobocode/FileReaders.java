@@ -27,7 +27,7 @@ public class FileReaders {
         }
     }
 
-    private static Stream<String> getLinesStream(String fileName) {
+    public static Stream<String> getLinesStream(String fileName) {
         try {
             return Files.lines(getResourcePath(fileName));
         } catch (IOException e) {
