@@ -6,23 +6,53 @@ package com.bobocode;
  * @param <T> a generic parameter
  */
 public class LinkedQueue<T> implements Queue<T> {
+
+    private Node<T> header;
+    private Node<T> tail;
+    private int size;
+
     @Override
     public void add(T element) {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        Node<T> newNode = new Node<>(element);
+        if (isEmpty()) {
+            header = tail = newNode;
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+        }
+        size++;
     }
 
     @Override
     public T poll() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        if (isEmpty()) {
+            return null;
+        }
+        Node<T> currentNode = header;
+        header = currentNode.next;
+        if (header == null) {
+            tail = null;
+        }
+        size--;
+        return currentNode.element;
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("This method is not implemented yet"); // todo: implement this method
+        return size == 0;
+    }
+
+    private class Node<T> {
+        private T element;
+        private Node<T> next;
+
+        public Node(T element) {
+            this.element = element;
+        }
     }
 }
