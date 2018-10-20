@@ -93,8 +93,10 @@ public class ConcurrentLinkedQueueTest {
 
         Callable<Integer> c = () -> {
             int localSum = 0;
-            while (!integerQueue.isEmpty()) {
-                localSum += integerQueue.poll();
+            Integer polledElement = integerQueue.poll();
+            while (polledElement != null) {
+                localSum += polledElement;
+                polledElement = integerQueue.poll();
             }
             return localSum;
         };
