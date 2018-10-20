@@ -183,6 +183,14 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testRemoveTheOnlyElement() {
+        intList = LinkedList.of(1);
+        intList.remove(0);
+
+        assertEquals(0, intList.size());
+    }
+
+    @Test
     public void testContainsOnEmptyList() {
         boolean contains = intList.contains(34);
 
